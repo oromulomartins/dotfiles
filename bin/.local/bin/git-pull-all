@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+AUTOMATION_HOME="${AUTOMATION_HOME:-$HOME/.local/share/automation}"
+AUTOMATION_DIR="$AUTOMATION_HOME/git-multi-pull"
+
+if [ ! -d "$AUTOMATION_DIR" ]; then
+  echo "Automation directory not found: $AUTOMATION_DIR" >&2
+  exit 1
+fi
+
+COMMAND="${1:-pull-all}"
+TARGET="${2:-$PWD}"
+
+case "$COMMAND" in
+  pull-all)
+    exec make -C "$AUTOMATION_DIR" pull-all \
+      BASE_DIR="$TARGET" \
+      SSH_KEY="${SSH_KEY:-}" \
+      MAX_DEPTH="${MAX_DEPTH:-10}" \
+      FETCH_FIRST="${FETCH_FIRST:-true}" \
+      INCLUDE_HIDDEN="${INCLUDE_HIDDEN:-false}"
+    ;;
+  dry-run)
+    exec make -C "$AUTOMATION_DIR" dry-run \
+      BASE_DIR="$TARGET" \
+      SSH_KEY="${SSH_KEY:-}" \
+      MAX_DEPTH="${MAX_DEPTH:-10}" \
+      FETCH_FIRST="${FETCH_FIRST:-true}" \
+      INCLUDE_HIDDEN="${INCLUDE_HIDDEN:-false}"
+    ;;
+  help|-h|--help)
+    exec make -C "$AUTOMATION_DIR" help
+    ;;
+  *)
+    echo "Invalid command: $COMMAND" >&2
+    echo
+    echo "Usage:"
+    echo "  git-pull-all"
+    echo "  git-pull-all pull-all [DIR]"
+    echo "  git-pull-all dry-run [DIR]"
+    echo "  git-pull-all help"
+    exit 1
+    ;;
+esac
