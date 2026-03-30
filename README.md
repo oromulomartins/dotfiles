@@ -1,12 +1,12 @@
 # [PT-BR]
-# 🏠 Dotfiles
+# Dotfiles
 
-Repositório contendo meus dotfiles para provisionar rapidamente um
-ambiente de desenvolvimento consistente, reproduzível e versionado.
+Repositorio contendo meus dotfiles para provisionar rapidamente um
+ambiente de desenvolvimento consistente, reproduzivel e versionado.
 
 ------------------------------------------------------------------------
 
-## 📁 Estrutura do Repositório
+## Estrutura do Repositorio
 
     dotfiles/
     ├── alacritty/
@@ -15,130 +15,166 @@ ambiente de desenvolvimento consistente, reproduzível e versionado.
     │   ├── .tool-versions
     │   ├── .asdfrc
     │   └── plugins.txt
+    ├── automation/
+    │   └── .local/share/automation/
+    │       └── git-multi-pull/
+    ├── bin/
+    │   └── .local/bin/
+    │       └── git-pull-all
     ├── lvim/
     │   └── .config/lvim/
     ├── p10k/
     │   └── .p10k.zsh
     ├── tmux/
-    │   └── .tmux.conf
+    │   └── .tmux.config
     ├── zsh/
-    │   ├── .zshrc
-    │   └── .zshenv
+    │   ├── .zprofile
+    │   ├── .zshenv
+    │   └── .zshrc
     └── README.md
 
 ------------------------------------------------------------------------
 
-## ✅ Pré-requisitos
+## Pre-requisitos
 
 Instale previamente:
 
--   Git\
--   GNU Stow (`brew install stow`)\
--   Alacritty\
--   asdf\
--   LunarVim\
--   Powerlevel10k\
--   tmux\
--   Zsh
+- Git
+- GNU Stow (`brew install stow`)
+- Alacritty
+- asdf
+- LunarVim
+- Powerlevel10k
+- tmux
+- Zsh
+- make
+- OpenSSH
 
 ------------------------------------------------------------------------
 
-## 🚀 Instalação
+## Instalacao
 
-### 1. Clonar repositório
+### 1. Clonar repositorio
 
-``` bash
-git clone https://github.com/romulomartinspicpay/dotfiles.git ~/dotfiles
+```bash
+git clone https://github.com/oromulomartins/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
-### 2. Aplicar links simbólicos
+### 2. Aplicar links simbolicos
 
-``` bash
-stow alacritty asdf lvim p10k tmux zsh
+```bash
+stow alacritty asdf automation bin lvim p10k tmux zsh
 ```
 
 Ou ignorando Markdown:
 
-``` bash
-stow --ignore='\.md$' alacritty asdf lvim p10k tmux zsh
+```bash
+stow --ignore='\.md$' alacritty asdf automation bin lvim p10k tmux zsh
 ```
 
-### 3. Instalar plugins e versões do ASDF
+### 3. Instalar plugins e versoes do ASDF
 
-``` bash
+```bash
 xargs -L1 asdf plugin add < asdf/plugins.txt
 asdf install
 ```
 
 ### 4. Recarregar shell
 
-``` bash
+```bash
 exec $SHELL
 ```
 
 ------------------------------------------------------------------------
 
-## 📦 Pacotes
+## Pacotes
 
--   **alacritty** → Configuração do terminal\
--   **asdf** → Versões de linguagens\
--   **lvim** → Configurações do LunarVim\
--   **p10k** → Tema Powerlevel10k\
--   **tmux** → Multiplexador\
--   **zsh** → Shell
-
-------------------------------------------------------------------------
-
-## 💡 Boas práticas
-
--   Manter `.tool-versions` atualizado\
--   Não versionar binários\
--   Commits pequenos
+- **alacritty** -> Configuracao do terminal
+- **asdf** -> Versoes de linguagens
+- **automation** -> Automacoes locais versionadas
+- **bin** -> Comandos globais em `~/.local/bin`
+- **lvim** -> Configuracoes do LunarVim
+- **p10k** -> Tema Powerlevel10k
+- **tmux** -> Multiplexador
+- **zsh** -> Shell
 
 ------------------------------------------------------------------------
 
+## Exemplo rapido
+
+```bash
+git-pull-all dry-run ~/workspace
+```
+
+------------------------------------------------------------------------
+
+## Boas praticas
+
+- Manter `.tool-versions` atualizado
+- Nao versionar binarios
+- Commits pequenos
+
+------------------------------------------------------------------------
 
 # [EN-US]
-# 🏠 Dotfiles
+# Dotfiles
 
 Repository containing my dotfiles to quickly provision a consistent,
 reproducible, and versioned development environment.
 
 ------------------------------------------------------------------------
 
-## 📁 Repository Structure
+## Repository Structure
 
     dotfiles/
     ├── alacritty/
+    │   └── .config/alacritty/
     ├── asdf/
+    │   ├── .tool-versions
+    │   ├── .asdfrc
+    │   └── plugins.txt
+    ├── automation/
+    │   └── .local/share/automation/
+    │       └── git-multi-pull/
+    ├── bin/
+    │   └── .local/bin/
+    │       └── git-pull-all
     ├── lvim/
+    │   └── .config/lvim/
     ├── p10k/
+    │   └── .p10k.zsh
     ├── tmux/
+    │   └── .tmux.config
     ├── zsh/
+    │   ├── .zprofile
+    │   ├── .zshenv
+    │   └── .zshrc
     └── README.md
 
 ------------------------------------------------------------------------
 
-## ✅ Requirements
+## Requirements
 
--   Git\
--   GNU Stow\
--   Alacritty\
--   asdf\
--   LunarVim\
--   Powerlevel10k\
--   tmux\
--   Zsh
+- Git
+- GNU Stow
+- Alacritty
+- asdf
+- LunarVim
+- Powerlevel10k
+- tmux
+- Zsh
+- make
+- OpenSSH
 
 ------------------------------------------------------------------------
 
-## 🚀 Installation
+## Installation
 
-``` bash
-git clone https://github.com/romulomartinspicpay/dotfiles.git ~/dotfiles
+```bash
+git clone https://github.com/oromulomartins/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-stow alacritty asdf lvim p10k tmux zsh
+stow alacritty asdf automation bin lvim p10k tmux zsh
 xargs -L1 asdf plugin add < asdf/plugins.txt
 asdf install
 exec $SHELL
@@ -146,17 +182,27 @@ exec $SHELL
 
 ------------------------------------------------------------------------
 
-## 📦 Packages
+## Packages
 
--   alacritty → Terminal config\
--   asdf → Language versions\
--   lvim → LunarVim config\
--   p10k → Theme\
--   tmux → Multiplexer\
--   zsh → Shell
+- alacritty -> Terminal config
+- asdf -> Language versions
+- automation -> Versioned local automations
+- bin -> Global commands in `~/.local/bin`
+- lvim -> LunarVim config
+- p10k -> Theme
+- tmux -> Multiplexer
+- zsh -> Shell
 
 ------------------------------------------------------------------------
 
-## 📄 License
+## Quick example
+
+```bash
+git-pull-all pull-all ~/workspace
+```
+
+------------------------------------------------------------------------
+
+## License
 
 MIT
