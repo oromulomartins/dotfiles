@@ -164,3 +164,6 @@ if is_macos; then
     fi
   done
 fi
+
+# opencode
+export PATH=/home/romulo/.opencode/bin:$PATH

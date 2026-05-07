@@ -8,7 +8,7 @@ TERM = "xterm-256color"
 [window]
 # decorations = "buttonless"
 dynamic_padding = false
-opacity = 0.9
+opacity = 0.95
 
 [window.dimensions]
 columns = 200
@@ -24,3 +24,11 @@ bold = { family = "SauceCodePro Nerd Font", style = "Bold" }
 italic = { family = "SauceCodePro Nerd Font", style = "Italic" }
 bold_italic = { family = "SauceCodePro Nerd Font", style = "Bold Italic" }
 size = 15.0
+
+[keyboard]
+bindings = [
+  { key = "V", mods = "Command", action = "Paste" },
+  { key = "C", mods = "Command", action = "Copy" },
+  { key = "N", mods = "Command", action = "CreateNewWindow" },
+  { key = "Q", mods = "Command", action = "Quit" }
+]
