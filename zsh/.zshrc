@@ -41,6 +41,10 @@ if command -v asdf >/dev/null 2>&1; then
   [[ -n "$_RUST_BIN" ]] && add_path "$_RUST_BIN"
 fi
 
+# asdf shims
+add_path "$HOME/.asdf/shims"
+add_path "$HOME/.asdf/bin"
+
 add_path "$HOME/.local/bin"
 
 # Se o shell NÃO for interativo, para aqui.
